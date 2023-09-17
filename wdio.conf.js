@@ -22,8 +22,7 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        // ToDo: define location for spec files here
-        "./test/specs/**/*.js"
+        './test/specs/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -45,15 +44,14 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 1,
+    maxInstances: 10,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        browserName: 'chrome',
-        acceprInsecureCerts: true
+        browserName: 'chrome'
     }],
 
     //
@@ -63,7 +61,7 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'error',
+    logLevel: 'info',
     //
     // Set specific log levels per logger
     // loggers:
