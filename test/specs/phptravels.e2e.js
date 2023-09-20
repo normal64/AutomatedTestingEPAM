@@ -55,10 +55,18 @@ describe('php travels cases', () => {
         await $('#main-body > div > div.row > div > form > div > div.card-body.px-sm-5.py-5 > div.form-group.mb-4.focused > div.d-flex.align-items-center.justify-content-between > div > a').click()
         let formHeader = await $("#main-body > div > div.row > div > div > div > div > div > h6");
         await expect(formHeader).toHaveText("Lost Password Reset")
-        await $("#inputEmail").setValue("%^$777");
+        await $("#inputEmail").setValue("777");
         await browser.pause(1000);
         await browser.keys("\uE007")
         //how to check pop up pn form validation?
+        //const validationMessageValue = await $("#inputEmail").getAttribute("validationMessage")
+        const validationMessageValue = await browser.execute(() => {
+            const inputElement = document.querySelector("#inputEmail");
+            return inputElement ? inputElement.validationMessage : null;
+        });
+        
+        console.log(`validationMessageValue`, validationMessageValue);
+        await expect(validationMessageValue.length).toBeGreaterThan(0);
     });
 
 })
