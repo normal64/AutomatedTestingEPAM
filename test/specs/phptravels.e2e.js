@@ -7,11 +7,13 @@ browser.addCommand("waitAndClick", function (selector) {
     element.waitForClickable({ timeout: 3000 })
     console.log("Element displayed, clicking...");
     element.click();
-  });
+});
+//https://docs.google.com/spreadsheets/d/1kFkc7CKAPNFUw_gajtFJwmSVhJUcVjEuPNESeR4pxuI/edit#gid=0
 
 describe('php travels cases', () => {
     const emailValue = "test@gmail.com"
     let screenshotIndex = 1;
+    
     beforeEach(() => {
         browser.url("https://phptravels.org/login");
         browser.setWindowSize(1920, 1600)
@@ -21,8 +23,6 @@ describe('php travels cases', () => {
         browser.saveScreenshot(screenshotName);
         screenshotIndex++;
     });
-    
-    //https://docs.google.com/spreadsheets/d/1kFkc7CKAPNFUw_gajtFJwmSVhJUcVjEuPNESeR4pxuI/edit#gid=0
     
     it("should fill email input", async ()=>{
         const emailInput = await $('#inputEmail')
@@ -41,15 +41,24 @@ describe('php travels cases', () => {
         //await browser.waitAndClick("#recaptcha-anchor");
         await browser.pause(1000);
         
-        browser.saveScreenshot('screenshot.png'); 
-      });
-      it("icon show reveal password", async () => {
+        
+    });
+    it("icon show reveal password", async () => {
         const passwordData =  "123456"
         const passwordInput = await $('#inputPassword')
         await passwordInput.setValue(passwordData)
         await expect(passwordInput).toHaveValue(passwordData)
         await $('#main-body > div > div.row > div > form > div > div.card-body.px-sm-5.py-5 > div.form-group.mb-4.focused > div.input-group.input-group-merge > div.input-group-append > button').click()
         await browser.pause(1000);
+    });
+    it("forgot password with incorrect email", async () => {
+        await $('#main-body > div > div.row > div > form > div > div.card-body.px-sm-5.py-5 > div.form-group.mb-4.focused > div.d-flex.align-items-center.justify-content-between > div > a').click()
+        let formHeader = await $("#main-body > div > div.row > div > div > div > div > div > h6");
+        await expect(formHeader).toHaveText("Lost Password Reset")
+        await $("#inputEmail").setValue("%^$777");
+        await browser.pause(1000);
+        await browser.keys("\uE007")
+        //how to check pop up pn form validation?
     });
 
 })
