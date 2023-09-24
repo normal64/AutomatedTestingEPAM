@@ -1,15 +1,3 @@
-
-browser.addCommand("waitAndClick", function (selector) {
-    // `this` is the return value of $(selector)
-    console.log(`Waiting for element with selector: ${selector}`);
-    const element = $(selector);
-    element.waitForDisplayed();
-    element.waitForClickable({ timeout: 3000 })
-    console.log("Element displayed, clicking...");
-    element.click();
-});
-//https://docs.google.com/spreadsheets/d/1kFkc7CKAPNFUw_gajtFJwmSVhJUcVjEuPNESeR4pxuI/edit#gid=0
-
 describe('php travels cases', () => {
     const emailValue = "test@gmail.com"
     let screenshotIndex = 1;
