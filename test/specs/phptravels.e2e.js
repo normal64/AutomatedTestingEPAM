@@ -1,3 +1,4 @@
+const travelPage = require("../pageobjects/phptravels.page.js")
 
 browser.addCommand("waitAndClick", function (selector) {
     // `this` is the return value of $(selector)
@@ -11,7 +12,7 @@ browser.addCommand("waitAndClick", function (selector) {
 //https://docs.google.com/spreadsheets/d/1kFkc7CKAPNFUw_gajtFJwmSVhJUcVjEuPNESeR4pxuI/edit#gid=0
 
 describe('php travels cases', () => {
-    const emailValue = "test@gmail.com"
+    const emailValue = "testUPDATED@gmail.com"
     let screenshotIndex = 1;
     
     beforeEach(() => {
@@ -25,30 +26,25 @@ describe('php travels cases', () => {
     });
     
     it("should fill email input", async ()=>{
-        const emailInput = await $('#inputEmail')
-        await expect(emailInput).toBeExisting()
-        await emailInput.setValue(emailValue)
-        
-    })
-  
+        const isEmailInputExisting = await travelPage.isEmailInputExisting();
+        expect(isEmailInputExisting).toBe(true)
+        await travelPage.enterEmail(emailValue)
+    });
+
     it("should use custom command", async () => {
-        const emailInput = await $('#inputEmail')
-        await expect(emailInput).toBeExisting()
-        await emailInput.setValue(emailValue)
+        await travelPage.enterEmail(emailValue)
         console.log("Before waiting and clicking...");
         await browser.waitAndClick("#login");
         //how to deal with captcha? cuz technically i am a robot:P
         //await browser.waitAndClick("#recaptcha-anchor");
         await browser.pause(1000);
-        
-        
     });
     it("icon show reveal password", async () => {
         const passwordData =  "123456"
-        const passwordInput = await $('#inputPassword')
-        await passwordInput.setValue(passwordData)
-        await expect(passwordInput).toHaveValue(passwordData)
-        await $('#main-body > div > div.row > div > form > div > div.card-body.px-sm-5.py-5 > div.form-group.mb-4.focused > div.input-group.input-group-merge > div.input-group-append > button').click()
+        await travelPage.enterPassword(passwordData);
+        const inputValue = await travelPage.getPasswordInputValue();
+        expect(inputValue).toEqual(passwordData)
+        await travelPage.clickRevealPasswordButton()
         await browser.pause(1000);
     });
     it("forgot password with incorrect email", async () => {
@@ -64,7 +60,6 @@ describe('php travels cases', () => {
             const inputElement = document.querySelector("#inputEmail");
             return inputElement ? inputElement.validationMessage : null;
         });
-        
         console.log(`validationMessageValue`, validationMessageValue);
         await expect(validationMessageValue.length).toBeGreaterThan(0);
     });
