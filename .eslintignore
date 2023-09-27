@@ -1,0 +1,6 @@
+node_modules
+coverage
+mochawesome-report
+/test/pageobjects/
+/test/specs/
+/wdio.conf.js
