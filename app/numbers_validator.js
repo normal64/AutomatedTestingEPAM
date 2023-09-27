@@ -4,6 +4,7 @@
 export class NumbersValidator {
   /**
      * @param {Number} number number to check
+
      * @return {Boolean} true if element is even
      */
   isNumberEven(number) {
@@ -43,7 +44,7 @@ export class NumbersValidator {
 
   /**
      * Check if passed value is integer
-     * @param n - value
+     *  @param {number} n - The value to check.
      * @return {boolean} true if value is integer
      */
   isInteger(n) {

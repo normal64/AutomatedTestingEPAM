@@ -1,13 +1,32 @@
-{
+// {
+//     "env": {
+//         "es2021": true,
+//         "node": true
+//     },
+//     "extends": "google",
+//     "parserOptions": {
+//         "ecmaVersion": "latest",
+//         "sourceType": "module"
+//     },
+//     "rules": {
+//     }
+// }
+{   
     "env": {
-        "es2021": true,
-        "node": true
-    },
-    "extends": "google",
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "rules": {
+            "commonjs": true,
+            "es2021": true,
+            "node": true
+        },
+        "extends": "airbnb-base",
+        "parserOptions": {
+            "ecmaVersion": "latest"
+        },
+        "rules": {
+            "class-methods-use-this": "off",
+            "arrow-parens": "off",
+            "prefer-arrow-callback": "off",
+            "func-names": "off",
+            "object-curly-newline": "off"
+        }
     }
-}
+    

@@ -1,6 +1,6 @@
 import {NumbersValidator} from '../../app/numbers_validator.js';
 import {expect} from 'chai';
-describe('is array number of numbers', () =>{
+describe('is array of numbers', () =>{
   let validator;
   beforeEach(()=>{
     validator = new NumbersValidator();
@@ -15,9 +15,6 @@ describe('is array number of numbers', () =>{
   });
   it('should throw an arrow is array contains not a Number type', ()=>{
     const arrayOfNumbers = [5, 6, '7', 8, 9];
-    const evenNumbersArray = validator.getEvenNumbersFromArray(arrayOfNumbers);
-    expect(()=>{
-      validator.getEvenNumbersFromArray(evenNumbersArray);
-    }).to.throw('[5,6,"7",8,9] is not an array of "Numbers"');
+    expect(()=>{validator.getEvenNumbersFromArray(arrayOfNumbers)}).to.throw('[5,6,7,8,9] is not an array of "Numbers"');
   });
 });
