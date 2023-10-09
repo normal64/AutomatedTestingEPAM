@@ -1,16 +1,12 @@
 describe('php travels cases', () => {
     const emailValue = "test@gmail.com"
-    let screenshotIndex = 1;
+    
     
     beforeEach(() => {
         browser.url("https://phptravels.org/login");
         browser.setWindowSize(1920, 1600)
         });
-    afterEach(() => {
-        const screenshotName = `test/screenshots/screenshotTask3${screenshotIndex}.png`;
-        browser.saveScreenshot(screenshotName);
-        screenshotIndex++;
-    });
+   
     it("nav link should open a related page",async() =>{
         const xPath = '//*[@id="Primary_Navbar-Announcements"]/a';
         await browser.execute((selector) =>{
@@ -26,7 +22,6 @@ describe('php travels cases', () => {
         )
         await browser.waitUntil(async () => {
             const newURL = await browser.getUrl();
-            console.log(`newUrl is:`, newURL);
             return newURL !== "phptravels.org/login";
             
         }, {
