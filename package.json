@@ -1,7 +1,7 @@
 {
   "name": "autotestjs-hometask1",
   "version": "1.0.0",
-  "type": "module",
+ 
   "description": "Automated Testing with JavaScript",
   "main": "index.js",
   "scripts": {
